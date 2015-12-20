@@ -4,8 +4,9 @@
 sbit dula=P2^6;
 sbit wela=P2^7;
 sbit rs=P2^0;
+sbit rw=P2^1;
 sbit lcden=P2^2;
-uchar code table[]="  Hello world!";
+uchar code table[]="0123456789";
 uchar num;
 void delay(uint ms)
 {
@@ -23,6 +24,7 @@ void write_com(uchar com)
 {
 	rs=0;
 	lcden=0;
+	rw=0;
 	P0=com;
 	delay(5);
 	lcden=1;
@@ -34,6 +36,7 @@ void write_date(uchar date)
 {
 	rs=1;
 	lcden=0;
+	rw=0;
 	P0=date;
 	delay(5);
 	lcden=1;
@@ -50,7 +53,7 @@ void init()
 	lcden=0;
 
 	write_com(0x38);
-	write_com(0x0c);
+	write_com(0x0e);
 	write_com(0x06);
 	write_com(0x01);
 
